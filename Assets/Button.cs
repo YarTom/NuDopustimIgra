@@ -7,25 +7,36 @@ public class Button : MonoBehaviour
 
     public GameObject ButonOn;
     public GameObject ButonOff;
-    private void OnTriggerEnter(Collider other)
+
+    private void OnCollisionEnter(Collision other)
     {
-        ButonOn.SetActive(true);
-        ButonOff.SetActive(false);
         _insideCounter++;
         if (_insideCounter == 1)
         {
             door.Open();
         }
+        UpdateButon();
     }
-    private void OnTriggerExit(Collider other)
+    private void OnCollisionExit(Collision other)
     {
-        ButonOn.SetActive(false);
-        ButonOff.SetActive(true);
         _insideCounter--;
-        Debug.Assert(_insideCounter >= 0);
         if (_insideCounter == 0)
         {
             door.Close();
+        }
+        UpdateButon();
+    }
+    private void UpdateButon()
+    {
+        if (_insideCounter >= 1)
+        {
+            ButonOn.SetActive(true);
+            ButonOff.SetActive(false);
+        }
+        else
+        {
+            ButonOn.SetActive(false);
+            ButonOff.SetActive(true);
         }
     }
 }

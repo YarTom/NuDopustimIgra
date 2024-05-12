@@ -5,11 +5,26 @@ public class PlayerConttroller : MonoBehaviour
     private Rigidbody rb;
 	public float Speed;
     public float Gravity;
+    public float JumpSpeed;
+    public float GravityVelocity;
+
+    public bool IsMirrorClone;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        if(IsMirrorClone)
+        {
+            Speed *= -1;
+        }
     }
-
+    //private void Update()
+    //{
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+           // Gravity = JumpSpeed;
+        //}
+        
+    //}
     void FixedUpdate()
     {
         var horiontal = Input.GetAxis("Horizontal");
@@ -19,8 +34,7 @@ public class PlayerConttroller : MonoBehaviour
         {
             transform.rotation = Quaternion.LookRotation(new Vector3(horiontal * Time.fixedDeltaTime, 0, vertical * Time.fixedDeltaTime));
         }
-        
     }
     
-   
+    
 }
