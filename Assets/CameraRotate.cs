@@ -17,5 +17,7 @@ public class CameraRotate : MonoBehaviour
                 i = 0;
             }
         }
+
+        transform.position = new Vector3(player[i].position.x * 0.8f, transform.position.y, transform.position.z);
     }
 }

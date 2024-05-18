@@ -32,7 +32,7 @@ public class PlayerConttroller : MonoBehaviour
     }
     void FixedUpdate()
     {
-        bool raycastHit = Physics.Raycast(BoxCollider.bounds.center, Vector3.down, BoxCollider.bounds.extents.y + 0.1f);
+        bool raycastHit = Physics.Raycast(BoxCollider.bounds.center, Vector3.down, BoxCollider.bounds.extents.y);
         if (raycastHit)
         {
             _fallVelocity = 0;
