@@ -3,24 +3,22 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     public bool IsOpen;
-    private void OnCollisionEnter(Collision collision)
+    private Animator _an;
+
+    private void Awake()
     {
-        if (IsOpen)
-        {
-            if (collision.gameObject.TryGetComponent<PlayerConttroller>(out var player))
-            {
-                Debug.Log("Есть контакт");
-            }
-        }
+        _an = GetComponent<Animator>();
     }
 
     public void Open()
     {
         IsOpen = true;
+        _an.SetBool("IsOpen", true);
     }
 
     public void Close()
     {
         IsOpen = false;
+        _an.SetBool("IsOpen", false);
     }
 }

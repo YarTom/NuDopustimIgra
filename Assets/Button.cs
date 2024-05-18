@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Button : MonoBehaviour
 {
-    public Door door;
+    public GameObject door;
     private int _insideCounter;
 
     public GameObject ButonOn;
@@ -13,7 +13,7 @@ public class Button : MonoBehaviour
         _insideCounter++;
         if (_insideCounter == 1)
         {
-            door.Open();
+            door.gameObject.GetComponent<Door>().Open();
         }
         UpdateButon();
     }
@@ -22,7 +22,7 @@ public class Button : MonoBehaviour
         _insideCounter--;
         if (_insideCounter == 0)
         {
-            door.Close();
+            door.gameObject.GetComponent<Door>().Close();
         }
         UpdateButon();
     }
