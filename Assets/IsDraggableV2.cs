@@ -38,10 +38,6 @@ public class IsDraggableV2 : MonoBehaviour
         if (_canDrag && Input.GetKey(KeyCode.Space) && followObj != null)
         {
             rb.AddForce(new Vector3(transform.position.x - followObj.transform.position.x, transform.position.y - followObj.transform.position.y, transform.position.z - followObj.transform.position.z).normalized * -30);
-        }
-
-        if (_canDrag && Input.GetKeyDown(KeyCode.Space))
-        {
             On.SetActive(true);
             Off.SetActive(false);
         }
