@@ -3,21 +3,46 @@ using UnityEngine;
 
 public class CameraRotate : MonoBehaviour
 {
+    private GameObject CutsceneObject;
+    private bool IsCutscene;
     public List<Transform> player;
     private int i;
     void Update()
     {
-        transform.LookAt(player[i].position);
-
-        if (Input.GetKeyDown(KeyCode.Tab)) 
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
-            i++; 
+            i++;
             if (i > player.Count - 1)
             {
                 i = 0;
             }
         }
 
-        transform.position = new Vector3(player[i].position.x * 0.8f, transform.position.y, transform.position.z);
+        if (!IsCutscene)
+        {
+            Look(player[i].gameObject);
+        }
+        else
+        {
+            Look(CutsceneObject);
+        }
+    }
+
+    public void Cutscene(GameObject lookat, float time)
+    {
+        IsCutscene = true;
+        CutsceneObject = lookat;
+        Invoke("ExitCutscene", time);
+    }
+
+    private void ExitCutscene()
+    {
+        IsCutscene = false;
+    }
+
+    private void Look(GameObject lookat)
+    {
+        transform.position = new Vector3(lookat.transform.position.x * 0.8f, transform.position.y, transform.position.z);
+        transform.LookAt(lookat.transform.position);
     }
 }
