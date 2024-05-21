@@ -14,7 +14,7 @@ public class PlayerConttroller : MonoBehaviour
 
     // My
     private float _fallVelocity = 0;
-    public bool isGrounded;
+    private bool isGrounded;
 
     public bool IsMirrorClone;
 
@@ -45,10 +45,19 @@ public class PlayerConttroller : MonoBehaviour
         }
         var horiontal = Input.GetAxis("Horizontal");
         var vertical = Input.GetAxis("Vertical");
-        rb.velocity = new Vector3(horiontal * Speed * Time.fixedDeltaTime, _fallVelocity * Time.fixedDeltaTime, vertical * Speed * Time.fixedDeltaTime);
+
+        rb.velocity = new Vector3(horiontal * Speed * Time.fixedDeltaTime, _fallVelocity * Time.fixedDeltaTime, vertical * Math.Abs(Speed) * Time.fixedDeltaTime);
         if (horiontal != 0 || vertical != 0)
         {
-            transform.rotation = Quaternion.LookRotation(new Vector3(Math.Sign(Speed) * horiontal * Time.fixedDeltaTime, 0, Math.Sign(Speed) * vertical * Time.fixedDeltaTime));
+            if (!IsMirrorClone)
+            {
+                transform.rotation = Quaternion.LookRotation(new Vector3(Math.Sign(Speed) * horiontal * Time.fixedDeltaTime, 0, Math.Sign(Speed) * vertical * Time.fixedDeltaTime));
+            }
+            else
+            {
+                transform.rotation = Quaternion.LookRotation(new Vector3(Math.Sign(Speed) * horiontal * Time.fixedDeltaTime, 0, Math.Sign(Speed) * -vertical * Time.fixedDeltaTime));
+            }
+            
             _an.SetBool("IsRun", true);
         }
         else
