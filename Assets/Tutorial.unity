@@ -594,6 +594,10 @@ PrefabInstance:
       value: Door
       objectReference: {fileID: 0}
     - target: {fileID: 2982569518349301448, guid: 27a53d51b79ed7049a1a5a856eed3db3, type: 3}
+      propertyPath: IsOpen
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2982569518349301448, guid: 27a53d51b79ed7049a1a5a856eed3db3, type: 3}
       propertyPath: ButtonCount
       value: 1
       objectReference: {fileID: 0}
@@ -620,8 +624,12 @@ PrefabInstance:
       value: Button
       objectReference: {fileID: 0}
     - target: {fileID: 1571609469507701236, guid: d5af2f6c76108114c9d46e48e6ea80d3, type: 3}
+      propertyPath: m_Size.y
+      value: 0.165475
+      objectReference: {fileID: 0}
+    - target: {fileID: 1571609469507701236, guid: d5af2f6c76108114c9d46e48e6ea80d3, type: 3}
       propertyPath: m_Center.y
-      value: -0.08
+      value: 0.00034277886
       objectReference: {fileID: 0}
     - target: {fileID: 1571609469507701236, guid: d5af2f6c76108114c9d46e48e6ea80d3, type: 3}
       propertyPath: m_IsTrigger

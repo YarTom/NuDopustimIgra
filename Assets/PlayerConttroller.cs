@@ -12,6 +12,9 @@ public class PlayerConttroller : MonoBehaviour
     public float GravityVelocity;
     public CapsuleCollider BoxCollider;
 
+    public GameObject WinMenu;
+    public GameObject Pause;
+
     // My
     private float _fallVelocity = 0;
     private bool isGrounded;
@@ -63,6 +66,16 @@ public class PlayerConttroller : MonoBehaviour
         else
         {
             _an.SetBool("IsRun", false);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.TryGetComponent<Exit>(out Exit component) && !IsMirrorClone)
+        {
+            WinMenu.SetActive(true);
+            Destroy(Pause);
+            Time.timeScale = 0;
         }
     }
 }
