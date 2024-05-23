@@ -17,7 +17,7 @@ public class PlayerConttroller : MonoBehaviour
 
     // My
     private float _fallVelocity = 0;
-    private bool isGrounded;
+    //private bool isGrounded;
 
     public bool IsMirrorClone;
 
@@ -39,12 +39,12 @@ public class PlayerConttroller : MonoBehaviour
         if (raycastHit)
         {
             _fallVelocity = 0;
-            isGrounded = true;
+            //isGrounded = true;
         }
         else
         {
             _fallVelocity += Gravity * Time.fixedDeltaTime;
-            isGrounded = false;
+            //isGrounded = false;
         }
         var horiontal = Input.GetAxis("Horizontal");
         var vertical = Input.GetAxis("Vertical");

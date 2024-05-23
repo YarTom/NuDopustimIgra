@@ -1,7 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+    private AudioSource _au;
+    public List<AudioClip> sounds;
+
     public int ButtonCount = 1;
     private int ButtonOnCount;
 
@@ -11,6 +15,7 @@ public class Door : MonoBehaviour
     private void Awake()
     {
         _an = GetComponent<Animator>();
+        _au = GetComponent<AudioSource>();
     }
 
     public void Open()
@@ -20,6 +25,7 @@ public class Door : MonoBehaviour
         {
             IsOpen = true;
             _an.SetBool("IsOpen", true);
+            _au.PlayOneShot(sounds[0]);
         }
         
     }
@@ -27,10 +33,11 @@ public class Door : MonoBehaviour
     public void Close()
     {
         ButtonOnCount--;
-        if (ButtonOnCount < ButtonCount)
+        if (ButtonOnCount < ButtonCount && IsOpen)
         {
             IsOpen = false;
             _an.SetBool("IsOpen", false);
+            _au.PlayOneShot(sounds[1]);
         }
     }
 }

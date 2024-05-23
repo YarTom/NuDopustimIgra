@@ -123,6 +123,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf59fc11987822548a46ef89a539c7ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sounds:
+  - {fileID: 8300000, guid: 0014467e2c2ab5244b4e87c92d2f6364, type: 3}
+  - {fileID: 8300000, guid: b04cb3375192b2d44aa22e4934d2e7d3, type: 3}
   ButtonCount: 1
   IsOpen: 0
 --- !u!1 &2142931469004287553 stripped

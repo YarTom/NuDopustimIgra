@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class IsDraggableV2 : MonoBehaviour
 {
+    private bool IsDrag;
+    private AudioSource _au;
+    public List<AudioClip> sounds;
+
     private GameObject followObj;
     private bool _canDrag;
     private Rigidbody rb;
@@ -14,6 +18,7 @@ public class IsDraggableV2 : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        _au = GetComponent<AudioSource>();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -40,11 +45,17 @@ public class IsDraggableV2 : MonoBehaviour
             rb.AddForce(new Vector3(transform.position.x - followObj.transform.position.x, transform.position.y - followObj.transform.position.y, transform.position.z - followObj.transform.position.z).normalized * -30);
             On.SetActive(true);
             Off.SetActive(false);
+            IsDrag = true;
         }
         if (Input.GetKeyUp(KeyCode.Space) || !_canDrag)
         {
             On.SetActive(false);
             Off.SetActive(true);
+            IsDrag  = false;
+        }
+        if (IsDrag)
+        {
+            _au.PlayOneShot(sounds[0]);
         }
     }
 
