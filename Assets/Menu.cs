@@ -5,6 +5,10 @@ public class Menu : MonoBehaviour
     public GameObject MenuOn;
     public GameObject MenuOff;
 
+    private void Start()
+    {
+        Cursor.visible = true;
+    }
     public void Click()
     {
         Debug.Log("Click");
