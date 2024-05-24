@@ -1,11 +1,12 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 public class PlayerConttroller : MonoBehaviour
 {
     private Rigidbody rb;
-    private CharacterController ch;
-
+    private AudioSource _au;
+    public List<AudioClip> sounds;
 	public float Speed;
     public float Gravity;
     public float JumpSpeed;
@@ -25,6 +26,7 @@ public class PlayerConttroller : MonoBehaviour
 
     private void Awake()
     {
+        _au = GetComponent<AudioSource>();
         BoxCollider = GetComponent<CapsuleCollider>();
         _an = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody>();
@@ -36,6 +38,7 @@ public class PlayerConttroller : MonoBehaviour
     void FixedUpdate()
     {
         bool raycastHit = Physics.Raycast(BoxCollider.bounds.center, Vector3.down, BoxCollider.bounds.extents.y);
+        Debug.DrawRay(BoxCollider.bounds.center, Vector3.down * BoxCollider.bounds.extents.y, Color.red);
         if (raycastHit)
         {
             _fallVelocity = 0;
@@ -76,6 +79,7 @@ public class PlayerConttroller : MonoBehaviour
             WinMenu.SetActive(true);
             Destroy(Pause);
             Time.timeScale = 0;
+            _au.PlayOneShot(sounds[0]);
         }
     }
 }

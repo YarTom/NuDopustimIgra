@@ -42,21 +42,22 @@ public class IsDraggableV2 : MonoBehaviour
     {
         if (_canDrag && Input.GetKey(KeyCode.Space) && followObj != null)
         {
+            if (!IsDrag)
+            {
+            _au.PlayOneShot(sounds[0]);
+            }
             rb.AddForce(new Vector3(transform.position.x - followObj.transform.position.x, transform.position.y - followObj.transform.position.y, transform.position.z - followObj.transform.position.z).normalized * -30);
             On.SetActive(true);
             Off.SetActive(false);
             IsDrag = true;
         }
-        if (Input.GetKeyUp(KeyCode.Space) || !_canDrag)
+        if ((Input.GetKeyUp(KeyCode.Space) || !_canDrag) && IsDrag)
         {
             On.SetActive(false);
             Off.SetActive(true);
-            IsDrag  = false;
+            IsDrag = false;
         }
-        if (IsDrag)
-        {
-            _au.PlayOneShot(sounds[0]);
-        }
+        
     }
 
 }

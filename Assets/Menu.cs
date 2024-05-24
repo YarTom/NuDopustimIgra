@@ -7,6 +7,7 @@ public class Menu : MonoBehaviour
 
     public void Click()
     {
+        Debug.Log("Click");
         MenuOn.SetActive(true);
         MenuOff.SetActive(false);
     }
