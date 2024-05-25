@@ -8,7 +8,7 @@ public class ChangeScene : MonoBehaviour
     
     private void Start()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 4 && Scene == -2)
+        if (SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings -1 && Scene == -2)
         {
             Destroy(gameObject);
         }
@@ -21,6 +21,11 @@ public class ChangeScene : MonoBehaviour
         }else if(Scene == -2)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            Time.timeScale = 1.0f;
+        }
+        else if (Scene == -3)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             Time.timeScale = 1.0f;
         }
         else

@@ -13,7 +13,7 @@ public class Lore : MonoBehaviour
     public GameObject Text;
     public List<string> text;
     private AudioSource _au;
-    public AudioClip sound;
+    public List<AudioClip> sound;
     private int numberOfSymbol;
     private int numberOfStroke;
     private bool IsEnd = false;
@@ -59,6 +59,7 @@ public class Lore : MonoBehaviour
             {
                 Text.GetComponent<Text>().text += text[numberOfStroke][numberOfSymbol];
                 numberOfSymbol++;
+                _au.PlayOneShot(sound[1]);
                 yield return new WaitForSeconds(0.07f);
             }
 
@@ -99,7 +100,7 @@ public class Lore : MonoBehaviour
         IsEnd = true;
         Images[2].SetActive(true);
         _au.Stop();
-        _au.PlayOneShot(sound);
+        _au.PlayOneShot(sound[0]);
         Invoke("ToMenu", 3f);
     }
 

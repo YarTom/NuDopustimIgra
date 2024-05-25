@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class PlayerConttroller : MonoBehaviour
 {
@@ -33,6 +34,16 @@ public class PlayerConttroller : MonoBehaviour
         if (IsMirrorClone)
         {
             Speed *= -1;
+        }
+    }
+
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            Time.timeScale = 1.0f;
         }
     }
     void FixedUpdate()
